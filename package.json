@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-insert-things-link",
 	"version": "0.12.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Insert links to Areas, Projects, and To-dos from Things by Cultured Code",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
