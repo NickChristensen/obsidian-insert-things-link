@@ -2,7 +2,7 @@ import { App, PluginSettingTab, Setting } from "obsidian";
 
 import InsertThingsLink from "./main";
 
-export default class SettingTab extends PluginSettingTab {
+export default class ThingsSettingTab extends PluginSettingTab {
 	plugin: InsertThingsLink;
 
 	constructor(app: App, plugin: InsertThingsLink) {

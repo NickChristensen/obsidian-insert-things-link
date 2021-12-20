@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
 
-import SettingTab from "./settings-tab";
-import ThingsSuggest from "./things-suggest";
+import ThingsSettingTab from "./settings-tab";
+import ThingsSuggest from "./suggest";
 
 interface PluginSettings {
 	triggerString: string;
@@ -19,7 +19,7 @@ export default class InsertThingsLink extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-		this.addSettingTab(new SettingTab(this.app, this));
+		this.addSettingTab(new ThingsSettingTab(this.app, this));
 		this.registerEditorSuggest(new ThingsSuggest(this.app, this));
 	}
 
