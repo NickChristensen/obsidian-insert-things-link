@@ -9,6 +9,7 @@ import {
 } from "obsidian";
 
 import InsertThingsLink from "./main";
+import getThings from "./get-things";
 
 interface ThingsCompletion {
 	label: string;
@@ -52,14 +53,6 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 			return null;
 		}
 
-		console.log({
-			start: startPos,
-			end: cursor,
-			query: editor
-				.getRange(startPos, cursor)
-				.substring(triggerPhrase.length),
-		});
-
 		return {
 			start: startPos,
 			end: cursor,
@@ -69,14 +62,15 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		};
 	}
 
-	getSuggestions(context: EditorSuggestContext): ThingsCompletion[] {
+	async getSuggestions(
+		context: EditorSuggestContext
+	): Promise<ThingsCompletion[]> {
 		console.log("How often is this called?");
-		let options = [
-			{ label: "Google", url: "https://google.com" },
-			{ label: "Apple", url: "https://apple.com" },
-			{ label: "Microsoft", url: "https://microsoft.com" },
-		];
-		return options.filter((option) => option.label.contains(context.query));
+		let options = await getThings();
+		// Replace this with a smarter filter
+		return options.filter((option) =>
+			option.label.toLowerCase().contains(context.query.toLowerCase())
+		);
 	}
 
 	selectSuggestion(
