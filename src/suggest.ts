@@ -12,8 +12,11 @@ import InsertThingsLink from "./main";
 import getThings from "./get-things";
 
 interface ThingsCompletion {
-	label: string;
-	url: string;
+	uuid: string;
+	title: string;
+	type: 0 | 1 | 2;
+	project: string;
+	area: string;
 }
 
 export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
@@ -65,11 +68,11 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	async getSuggestions(
 		context: EditorSuggestContext
 	): Promise<ThingsCompletion[]> {
-		console.log("How often is this called?");
+		console.log("getSuggestions");
 		let options = await getThings();
-		// Replace this with a smarter filter
-		return options.filter((option) =>
-			option.label.toLowerCase().contains(context.query.toLowerCase())
+		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
+		return options.filter((option: ThingsCompletion) =>
+			option.title.toLowerCase().contains(context.query.toLowerCase())
 		);
 	}
 
@@ -84,8 +87,10 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 
 		// const includeAlias = event.shiftKey;
 
+		console.log(suggestion);
+
 		activeView.editor.replaceRange(
-			`[${suggestion.label}](${suggestion.url})${
+			`[${suggestion.title}](things:///show?id=${suggestion.uuid})${
 				this.plugin?.settings?.trailingSpace ? " " : ""
 			}`,
 			this.context.start,
@@ -94,6 +99,13 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	}
 
 	renderSuggestion(suggestion: ThingsCompletion, el: HTMLElement) {
-		el.setText(suggestion.label);
+		el.innerHTML = suggestion.title;
+		let context = suggestion.project || suggestion.area;
+
+		if (suggestion.type === 0 && context) {
+			el.innerHTML =
+				el.innerHTML +
+				`<div style="color: var(--text-muted); font-size: 80%">${context}</div>`;
+		}
 	}
 }
