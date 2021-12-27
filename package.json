@@ -21,7 +21,6 @@
 		"typescript": "4.4.4"
 	},
 	"dependencies": {
-		"spawn-promise": "^0.1.8",
-		"sql.js": "^1.6.2"
+		"spawn-promise": "^0.1.8"
 	}
 }
