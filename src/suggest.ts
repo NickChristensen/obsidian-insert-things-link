@@ -22,17 +22,18 @@ interface ThingsCompletion {
 export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	plugin: InsertThingsLink;
 	app: App;
+	limit: number;
 
 	constructor(app: App, plugin: InsertThingsLink) {
 		super(app);
 		this.plugin = plugin;
 		this.app = app;
+		this.limit = 5;
 	}
 
 	onTrigger(
 		cursor: EditorPosition,
 		editor: Editor
-		// file: TFile
 	): EditorSuggestTriggerInfo {
 		const triggerPhrase = this.plugin?.settings?.triggerString;
 		const startPos = this.context?.start || {
@@ -68,26 +69,20 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	async getSuggestions(
 		context: EditorSuggestContext
 	): Promise<ThingsCompletion[]> {
-		console.log("getSuggestions");
+		console.time("getThings");
 		let options = await getThings();
+		console.timeEnd("getThings");
 		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
 		return options.filter((option: ThingsCompletion) =>
 			option.title.toLowerCase().contains(context.query.toLowerCase())
 		);
 	}
 
-	selectSuggestion(
-		suggestion: ThingsCompletion,
-		event: KeyboardEvent | MouseEvent
-	) {
+	selectSuggestion(suggestion: ThingsCompletion) {
 		const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
 		if (!activeView) {
 			return;
 		}
-
-		// const includeAlias = event.shiftKey;
-
-		console.log(suggestion);
 
 		activeView.editor.replaceRange(
 			`[${suggestion.title}](things:///show?id=${suggestion.uuid})${
@@ -100,12 +95,12 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 
 	renderSuggestion(suggestion: ThingsCompletion, el: HTMLElement) {
 		el.innerHTML = suggestion.title;
-		let context = suggestion.project || suggestion.area;
+		let parent = suggestion.project || suggestion.area;
 
-		if (suggestion.type === 0 && context) {
+		if (suggestion.type === 0 && parent) {
 			el.innerHTML =
 				el.innerHTML +
-				`<div style="color: var(--text-muted); font-size: 80%">${context}</div>`;
+				`<div style="color: var(--text-muted); font-size: 80%">${parent}</div>`;
 		}
 	}
 }
