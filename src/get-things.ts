@@ -2,7 +2,7 @@ import { homedir } from "os";
 import * as path from "path";
 import spawn from "spawn-promise";
 
-const getThings = async (): Promise<any> => {
+const getThings = async (): Promise<string> => {
 	const dbPath = path.join(
 		homedir(),
 		"Library",
@@ -28,7 +28,7 @@ const getThings = async (): Promise<any> => {
 			"-readonly",
 			query,
 		]);
-		return JSON.parse(buffer.toString());
+		return buffer.toString();
 	} catch (e) {
 		console.error(e);
 	}

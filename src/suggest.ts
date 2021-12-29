@@ -7,6 +7,7 @@ import {
 	EditorSuggestTriggerInfo,
 	MarkdownView,
 } from "obsidian";
+import memoize from "lodash.memoize";
 
 import InsertThingsLink from "./main";
 import getThings from "./get-things";
@@ -18,6 +19,8 @@ interface ThingsCompletion {
 	project: string;
 	area: string;
 }
+
+const memoizedGetThings = memoize(getThings, () => new Date().getMinutes());
 
 export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	plugin: InsertThingsLink;
@@ -69,11 +72,11 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	async getSuggestions(
 		context: EditorSuggestContext
 	): Promise<ThingsCompletion[]> {
-		console.time("getThings");
-		let options = await getThings();
-		console.timeEnd("getThings");
+		let json = await memoizedGetThings();
+		let suggestions = JSON.parse(json);
+
 		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
-		return options.filter((option: ThingsCompletion) =>
+		return suggestions.filter((option: ThingsCompletion) =>
 			option.title.toLowerCase().contains(context.query.toLowerCase())
 		);
 	}
