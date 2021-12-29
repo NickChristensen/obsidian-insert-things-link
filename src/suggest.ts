@@ -20,6 +20,7 @@ interface ThingsCompletion {
 	area: string;
 }
 
+// Cache the result of this slow (~1s) call, only run every minute
 const memoizedGetThings = memoize(getThings, () => new Date().getMinutes());
 
 export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
