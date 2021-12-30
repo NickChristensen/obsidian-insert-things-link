@@ -16,7 +16,7 @@ esbuild
 		banner: {
 			js: banner,
 		},
-		entryPoints: ["src/main.ts"],
+		entryPoints: ["src/main.ts", "src/styles.css"],
 		bundle: true,
 		external: ["obsidian", "electron", ...builtins],
 		format: "cjs",
@@ -25,8 +25,8 @@ esbuild
 		logLevel: "info",
 		sourcemap: prod ? false : "inline",
 		treeShaking: true,
-		outfile: prod
-			? "main.js"
-			: `${homedir()}/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/.obsidian/plugins/obsidian-insert-things-link/main.js`,
+		outdir: prod
+			? "."
+			: `${homedir()}/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes/.obsidian/plugins/obsidian-insert-things-link/`,
 	})
 	.catch(() => process.exit(1));

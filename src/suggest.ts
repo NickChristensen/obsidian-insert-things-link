@@ -101,12 +101,12 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 
 	renderSuggestion(suggestion: ThingsCompletion, el: HTMLElement) {
 		el.innerHTML = suggestion.title;
+		el.classList.add("itl-suggestion-item");
 		let parent = suggestion.project || suggestion.area;
 
 		if (suggestion.type === 0 && parent) {
 			el.innerHTML =
-				el.innerHTML +
-				`<div style="color: var(--text-muted); font-size: 80%">${parent}</div>`;
+				el.innerHTML + `<div class="itl-item-parent">${parent}</div>`;
 		}
 	}
 }
