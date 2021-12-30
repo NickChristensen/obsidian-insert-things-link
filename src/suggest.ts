@@ -11,7 +11,7 @@ import memoize from "lodash.memoize";
 
 import InsertThingsLink from "./main";
 import getThings from "./get-things";
-import staticSections from "./static-sections.json";
+import staticSections from "./static-sections";
 
 interface ThingsCompletion {
 	uuid: string;
