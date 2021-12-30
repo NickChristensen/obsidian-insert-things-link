@@ -11,6 +11,7 @@ import memoize from "lodash.memoize";
 
 import InsertThingsLink from "./main";
 import getThings from "./get-things";
+import staticSections from "./static-sections.json";
 
 interface ThingsCompletion {
 	uuid: string;
@@ -77,8 +78,9 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		let suggestions = JSON.parse(json);
 
 		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
-		return suggestions.filter((option: ThingsCompletion) =>
-			option.title.toLowerCase().contains(context.query.toLowerCase())
+		return [...staticSections, ...suggestions].filter(
+			(option: ThingsCompletion) =>
+				option.title.toLowerCase().contains(context.query.toLowerCase())
 		);
 	}
 
