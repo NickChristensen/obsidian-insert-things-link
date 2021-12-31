@@ -12,6 +12,13 @@ import memoize from "lodash.memoize";
 import InsertThingsLink from "./main";
 import getThings from "./get-things";
 import staticSections from "./static-sections";
+import Regular from "../img/Checkbox-Regular.png";
+import RegularDark from "../img/Checkbox-Regular-Dark.png";
+import Someday from "../img/Checkbox-Later.png";
+import SomedayDark from "../img/Checkbox-Later-Dark.png";
+// Need to fix this icon, it's too bright
+import Repeating from "../img/Checkbox-Repeating.png";
+import RepeatingDark from "../img/Checkbox-Repeating-Dark.png";
 
 interface ThingsCompletion {
 	uuid: string;
@@ -33,7 +40,7 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		super(app);
 		this.plugin = plugin;
 		this.app = app;
-		this.limit = 5;
+		// this.limit = 5;
 	}
 
 	onTrigger(
@@ -78,7 +85,7 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		let suggestions = JSON.parse(json);
 
 		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
-		return [...staticSections, ...suggestions].filter(
+		return [...suggestions, ...staticSections].filter(
 			(option: ThingsCompletion) =>
 				option.title.toLowerCase().contains(context.query.toLowerCase())
 		);
@@ -100,13 +107,39 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 	}
 
 	renderSuggestion(suggestion: ThingsCompletion, el: HTMLElement) {
-		el.innerHTML = suggestion.title;
-		el.classList.add("itl-suggestion-item");
 		let parent = suggestion.project || suggestion.area;
+		let hasParent = suggestion.type === 0 && parent;
+		let isDarkMode = this.app.getTheme() == "obsidian";
+		let isDynamic = typeof suggestion.type === "number";
+		let isRepeating =
+			suggestion.start === 2 && suggestion.instanceCreationStartDate;
+		let isSomeDay =
+			suggestion.start === 2 &&
+			!suggestion.instanceCreationStartDate &&
+			!suggestion.startDate;
 
-		if (suggestion.type === 0 && parent) {
-			el.innerHTML =
-				el.innerHTML + `<div class="itl-item-parent">${parent}</div>`;
+		// Dynamic result won't have icons yet
+		if (isDynamic) {
+			if (isRepeating) {
+				suggestion.lightIcon = Repeating;
+				suggestion.darkIcon = RepeatingDark;
+			} else if (isSomeDay) {
+				suggestion.lightIcon = Someday;
+				suggestion.darkIcon = SomedayDark;
+			} else {
+				suggestion.lightIcon = Regular;
+				suggestion.darkIcon = RegularDark;
+			}
 		}
+
+		let icon = isDarkMode ? suggestion.darkIcon : suggestion.lightIcon;
+
+		el.classList.add("itl-suggestion-item");
+
+		el.innerHTML = `<div class="itl-item-icon">${
+			icon ? `<img src="${icon}">` : ""
+		}</div><div class="itl-item-info"><div>${suggestion.title}</div>${
+			hasParent ? `<div class="itl-item-parent">${parent}</div>` : ""
+		}</div>`;
 	}
 }

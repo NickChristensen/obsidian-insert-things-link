@@ -1,74 +1,97 @@
+import AllProjects from "../img/Source-AllProjects.png";
+import AllProjectsDark from "../img/Source-AllProjects-Dark.png";
+import Deadlines from "../img/Source-Deadlines.png";
+import DeadlinesDark from "../img/Source-Deadlines-Dark.png";
+import Inbox from "../img/Source-Inbox.png";
+import InboxDark from "../img/Source-Inbox-Dark.png";
+import Logbook from "../img/Source-Logbook.png";
+import LogbookDark from "../img/Source-Logbook-Dark.png";
+import LoggedProjects from "../img/Source-LoggedProjects.png";
+import LoggedProjectsDark from "../img/Source-LoggedProjects-Dark.png";
+import Next from "../img/Source-Next.png";
+import NextDark from "../img/Source-Next-Dark.png";
+import Repeating from "../img/Source-Repeating.png";
+import RepeatingDark from "../img/Source-Repeating-Dark.png";
+import Scheduled from "../img/Source-Scheduled.png";
+import ScheduledDark from "../img/Source-Scheduled-Dark.png";
+import Someday from "../img/Source-Someday.png";
+import SomedayDark from "../img/Source-Someday-Dark.png";
+import Today from "../img/Source-Today.png";
+import TodayDark from "../img/Source-Today-Dark.png";
+import Trash from "../img/Source-Trash.png";
+import TrashDark from "../img/Source-Trash-Dark.png";
+
 export default [
 	{
 		uuid: "inbox",
 		title: "Inbox",
-		darkIcon: "Source-Inbox-Dark@2x.png",
-		lightIcon: "Source-Inbox@2x.png",
+		darkIcon: InboxDark,
+		lightIcon: Inbox,
 	},
 	{
 		uuid: "today",
 		title: "Today",
-		darkIcon: "Source-Today-Dark@2x.png",
-		lightIcon: "Source-Today@2x.png",
+		darkIcon: TodayDark,
+		lightIcon: Today,
 	},
 	{
 		uuid: "anytime",
 		title: "Anytime",
-		darkIcon: "Source-Next-Dark@2x.png",
-		lightIcon: "Source-Next@2x.png",
+		darkIcon: NextDark,
+		lightIcon: Next,
 	},
 	{
 		uuid: "upcoming",
 		title: "Upcoming",
-		darkIcon: "Source-Scheduled-Dark@2x.png",
-		lightIcon: "Source-Scheduled@2x.png",
+		darkIcon: ScheduledDark,
+		lightIcon: Scheduled,
 	},
 	{
 		uuid: "someday",
 		title: "Someday",
-		darkIcon: "Source-Someday-Dark@2x.png",
-		lightIcon: "Source-Someday@2x.png",
+		darkIcon: SomedayDark,
+		lightIcon: Someday,
 	},
 	{
 		uuid: "logbook",
 		title: "Logbook",
-		darkIcon: "Source-Logbook-Dark@2x.png",
-		lightIcon: "Source-Logbook@2x.png",
+		darkIcon: LogbookDark,
+		lightIcon: Logbook,
 	},
 	{
 		uuid: "tomorrow",
 		title: "Tomorrow",
-		darkIcon: "Source-Scheduled-Dark@2x.png",
-		lightIcon: "Source-Scheduled@2x.png",
+		darkIcon: ScheduledDark,
+		lightIcon: Scheduled,
 	},
 	{
 		uuid: "deadlines",
 		title: "Deadlines",
-		darkIcon: "Source-Deadlines-Dark@2x.png",
-		lightIcon: "Source-Deadlines@2x.png",
+		darkIcon: DeadlinesDark,
+		lightIcon: Deadlines,
 	},
 	{
 		uuid: "repeating",
 		title: "Repeating",
-		darkIcon: "Source-Repeating-Dark@2x.png",
-		lightIcon: "Source-Repeating@2x.png",
+		darkIcon: RepeatingDark,
+		lightIcon: Repeating,
 	},
 	{
 		uuid: "all-projects",
 		title: "All Projects",
-		darkIcon: "Source-AllProjects-Dark@2x.png",
-		lightIcon: "Source-AllProjects@2x.png",
+		darkIcon: AllProjectsDark,
+		lightIcon: AllProjects,
 	},
 	{
 		uuid: "logged-projects ",
 		title: "Logged Projects ",
-		darkIcon: "Source-LoggedProjects-Dark@2x.png",
-		lightIcon: "Source-LoggedProjects@2x.png",
+		darkIcon: LoggedProjectsDark,
+		lightIcon: LoggedProjects,
 	},
 	{
 		uuid: "trash",
 		title: "Trash",
-		darkIcon: "Source-Trash-Dark@2x.png",
-		lightIcon: "Source-Trash@2x.png",
+		darkIcon: TrashDark,
+		lightIcon: Trash,
 	},
 ];

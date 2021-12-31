@@ -12,7 +12,7 @@ const dbPath = path.join(
 );
 
 const query = `SELECT
-		task.uuid, task.type, task.title, project.title as project, area.title as area
+		task.uuid, task.type, task.title, task.start, task.startDate, task.instanceCreationStartDate, project.title as project, area.title as area
 		FROM TMTask task
 		LEFT OUTER JOIN TMTask project ON TASK.project = project.uuid
 		LEFT OUTER JOIN TMArea area ON TASK.area = area.uuid

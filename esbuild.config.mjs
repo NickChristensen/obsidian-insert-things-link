@@ -19,6 +19,7 @@ esbuild
 		entryPoints: ["src/main.ts", "src/styles.css"],
 		bundle: true,
 		external: ["obsidian", "electron", ...builtins],
+		loader: { ".png": "dataurl" },
 		format: "cjs",
 		watch: !prod,
 		target: "es2016",

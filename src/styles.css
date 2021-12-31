@@ -1,8 +1,27 @@
 .itl-suggestion-item {
-	font-size: var(--font-adaptive-small);
+	display: flex;
+}
+
+.itl-item-icon {
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 16px;
+	margin-right: 8px;
+	margin-top: 3px;
+}
+
+.itl-item-icon img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+.itl-item-info {
 }
 
 .itl-item-parent {
-	font-size: var(--font-adaptive-smaller);
+	font-size: var(--font-adaptive-small);
 	color: var(--text-muted);
 }
