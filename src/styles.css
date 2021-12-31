@@ -1,5 +1,6 @@
 .itl-suggestion-item {
 	display: flex;
+	padding: 4px 8px;
 }
 
 .itl-item-icon {
@@ -16,9 +17,6 @@
 	border-radius: 0;
 	box-shadow: none;
 	background-color: transparent;
-}
-
-.itl-item-info {
 }
 
 .itl-item-parent {

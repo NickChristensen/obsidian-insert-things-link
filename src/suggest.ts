@@ -138,7 +138,7 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 
 		el.innerHTML = `<div class="itl-item-icon">${
 			icon ? `<img src="${icon}">` : ""
-		}</div><div class="itl-item-info"><div>${suggestion.title}</div>${
+		}</div><div><div>${suggestion.title}</div>${
 			hasParent ? `<div class="itl-item-parent">${parent}</div>` : ""
 		}</div>`;
 	}
