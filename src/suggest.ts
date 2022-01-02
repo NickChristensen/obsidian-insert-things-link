@@ -40,7 +40,7 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		super(app);
 		this.plugin = plugin;
 		this.app = app;
-		// this.limit = 5;
+		this.limit = 10;
 	}
 
 	onTrigger(
@@ -136,9 +136,9 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 
 		el.classList.add("itl-suggestion-item");
 
-		el.innerHTML = `<div class="itl-item-icon">${
-			icon ? `<img src="${icon}">` : ""
-		}</div><div><div>${suggestion.title}</div>${
+		el.innerHTML = `${
+			icon ? `<img class="itl-item-icon" src="${icon}">` : ""
+		}<div class="itl-item-info">${suggestion.title}${
 			hasParent ? `<div class="itl-item-parent">${parent}</div>` : ""
 		}</div>`;
 	}
