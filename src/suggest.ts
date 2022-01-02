@@ -16,7 +16,6 @@ import Regular from "../img/Checkbox-Regular.png";
 import RegularDark from "../img/Checkbox-Regular-Dark.png";
 import Someday from "../img/Checkbox-Later.png";
 import SomedayDark from "../img/Checkbox-Later-Dark.png";
-// Need to fix this icon, it's too bright
 import Repeating from "../img/Checkbox-Repeating.png";
 import RepeatingDark from "../img/Checkbox-Repeating-Dark.png";
 
