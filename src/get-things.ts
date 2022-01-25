@@ -6,7 +6,7 @@ const dbPath = path.join(
 	homedir(),
 	"Library",
 	"Group Containers",
-	"JLMPQHK86H.com.culturedcode.ThingsMac",
+	"JLMPQHK86H.com.culturedcode.ThingsMac.beta",
 	"Things Database.thingsdatabase",
 	"main.sqlite"
 );

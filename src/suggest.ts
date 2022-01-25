@@ -83,6 +83,11 @@ export default class ThingsSuggest extends EditorSuggest<ThingsCompletion> {
 		let json = await memoizedGetThings();
 		let suggestions = JSON.parse(json);
 
+		// Uncomment this to pause when suggest menu is shown
+		// setTimeout(() => {
+		// 	debugger;
+		// }, 500);
+
 		// Replace this with a smarter filter like https://github.com/kentcdodds/match-sorter
 		return [...suggestions, ...staticSections].filter(
 			(option: ThingsCompletion) =>

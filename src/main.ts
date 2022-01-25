@@ -6,11 +6,13 @@ import ThingsSuggest from "./suggest";
 interface PluginSettings {
 	triggerString: string;
 	trailingSpace: boolean;
+	// dbPath: string;
 }
 
 const DEFAULT_SETTINGS: PluginSettings = {
 	triggerString: "/",
 	trailingSpace: true,
+	// dbPath: "",
 };
 
 export default class InsertThingsLink extends Plugin {
